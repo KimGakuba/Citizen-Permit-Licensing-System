@@ -237,3 +237,47 @@ END;
 
 SELECT COUNT(*) AS total_applications 
 FROM application;
+
+SELECT 
+    status,
+    COUNT(*) AS count,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 2) AS percentage
+FROM application
+GROUP BY status
+ORDER BY count DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT 
+    a.application_number,
+    c.first_name || ' ' || c.last_name AS applicant,
+    p.permit_name,
+    a.status,
+    TO_CHAR(a.payment_amount, '999,999.99') AS amount
+FROM application a
+JOIN citizen c ON a.citizen_id = c.citizen_id
+JOIN permit_type p ON a.permit_type_id = p.permit_type_id
+WHERE ROWNUM <= 10
+ORDER BY a.application_id;
+
+
+
+
+
+
+SELECT 
+    status,
+    COUNT(*) AS count,
+    ROUND(COUNT(*) * 100.0 / SUM(COUNT(*)) OVER(), 2) || '%' AS percentage
+FROM application
+GROUP BY status
+ORDER BY count DESC;

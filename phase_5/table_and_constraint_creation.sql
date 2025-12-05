@@ -301,3 +301,44 @@ WHERE t.table_name IN (
   'REVIEW_STEP', 'ISSUED_LICENSE', 'DOCUMENT'
 )
 ORDER BY t.table_name, i.index_name;
+
+
+
+
+
+
+
+SELECT 
+    table_name,
+    tablespace_name,
+    num_rows
+FROM user_tables
+ORDER BY table_name;
+
+
+
+
+
+
+
+SELECT 
+    CASE constraint_type
+        WHEN 'P' THEN 'Primary Key'
+        WHEN 'R' THEN 'Foreign Key'
+        WHEN 'U' THEN 'Unique'
+        WHEN 'C' THEN 'Check'
+    END AS constraint_type,
+    COUNT(*) AS count
+FROM user_constraints
+WHERE table_name IN (
+    'CITIZEN', 'PERMIT_TYPE', 'DEPARTMENT', 'APPLICATION',
+    'REVIEW_STEP', 'ISSUED_LICENSE', 'DOCUMENT'
+)
+GROUP BY constraint_type
+ORDER BY count DESC;
+
+
+
+
+
+

@@ -260,3 +260,60 @@ FROM review_step r
 JOIN application a ON r.application_id = a.application_id
 WHERE r.department_id BETWEEN 22 AND 26
 ORDER BY r.department_id, r.step_id;
+
+
+
+
+SELECT 
+    d.department_code,
+    d.department_name,
+    COUNT(r.step_id) AS total_reviews,
+    SUM(CASE WHEN r.step_status = 'Completed' THEN 1 ELSE 0 END) AS completed
+FROM department d
+LEFT JOIN review_step r ON d.department_id = r.department_id
+GROUP BY d.department_code, d.department_name
+ORDER BY total_reviews DESC;
+
+
+
+
+
+
+
+
+
+
+
+
+
+SELECT 
+    d.department_code,
+    d.department_name,
+    COUNT(r.step_id) AS reviews
+FROM department d
+LEFT JOIN review_step r ON d.department_id = r.department_id
+GROUP BY d.department_code, d.department_name
+ORDER BY reviews DESC
+FETCH FIRST 10 ROWS ONLY;
+
+
+
+
+
+
+
+
+
+
+
+SELECT 
+    index_name,
+    table_name,
+    tablespace_name,
+    uniqueness
+FROM user_indexes
+WHERE table_name IN (
+    'CITIZEN', 'PERMIT_TYPE', 'DEPARTMENT', 'APPLICATION',
+    'REVIEW_STEP', 'ISSUED_LICENSE', 'DOCUMENT'
+)
+ORDER BY table_name, index_name;

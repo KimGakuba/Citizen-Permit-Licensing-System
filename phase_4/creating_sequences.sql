@@ -45,3 +45,40 @@ CREATE SEQUENCE seq_citizen_id
   INCREMENT BY 1
   NOCACHE
   NOCYCLE;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  -- Check current sequence values
+SELECT 
+    sequence_name,
+    last_number AS current_value,
+    increment_by,
+    cache_size
+FROM user_sequences
+ORDER BY sequence_name;
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

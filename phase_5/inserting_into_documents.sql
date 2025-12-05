@@ -170,3 +170,34 @@ SELECT
     'Average File Size (KB)',
     ROUND(AVG(file_size)/1024, 2)
 FROM document;
+
+
+
+
+
+SELECT 
+    COUNT(DISTINCT application_id) AS apps_with_docs,
+    COUNT(*) AS total_documents,
+    ROUND(AVG(cnt), 2) AS avg_docs_per_app
+FROM (
+    SELECT application_id, COUNT(*) AS cnt
+    FROM document
+    GROUP BY application_id
+);
+
+
+
+
+
+
+
+
+SELECT 
+    'CITIZEN' AS table_name, COUNT(*) AS records FROM citizen
+UNION ALL SELECT 'PERMIT_TYPE', COUNT(*) FROM permit_type
+UNION ALL SELECT 'DEPARTMENT', COUNT(*) FROM department
+UNION ALL SELECT 'APPLICATION', COUNT(*) FROM application
+UNION ALL SELECT 'REVIEW_STEP', COUNT(*) FROM review_step
+UNION ALL SELECT 'ISSUED_LICENSE', COUNT(*) FROM issued_license
+UNION ALL SELECT 'DOCUMENT', COUNT(*) FROM document
+ORDER BY table_name;

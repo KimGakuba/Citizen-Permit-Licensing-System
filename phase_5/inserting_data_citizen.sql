@@ -271,3 +271,14 @@ SELECT MIN(citizen_id) AS min_id, MAX(citizen_id) AS max_id FROM citizen;
 -- Update sequence for future inserts
 DROP SEQUENCE seq_citizen_id;
 CREATE SEQUENCE seq_citizen_id START WITH 1200 INCREMENT BY 1 NOCACHE NOCYCLE;
+
+
+SELECT 
+    'CITIZEN' AS table_name, COUNT(*) AS records FROM citizen
+UNION ALL SELECT 'PERMIT_TYPE', COUNT(*) FROM permit_type
+UNION ALL SELECT 'DEPARTMENT', COUNT(*) FROM department
+UNION ALL SELECT 'APPLICATION', COUNT(*) FROM application
+UNION ALL SELECT 'REVIEW_STEP', COUNT(*) FROM review_step
+UNION ALL SELECT 'ISSUED_LICENSE', COUNT(*) FROM issued_license
+UNION ALL SELECT 'DOCUMENT', COUNT(*) FROM document
+ORDER BY 1;  -- Use column position instead of alias
