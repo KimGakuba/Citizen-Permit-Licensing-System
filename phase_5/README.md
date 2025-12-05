@@ -611,8 +611,8 @@ phase-5/
 
 ## 📞 Support
 
-**Lecturer:** Eric Maniraguha  
-**Email:** eric.maniraguha@auca.ac.rw
+**Developer:** NGABONZIZA Kim Gakuba 
+**Email:** kimgakuba@gmail.com
 
 ---
 
