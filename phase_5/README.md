@@ -45,7 +45,10 @@ Phase V successfully implemented a fully normalized database with 7 tables, comp
 ```sql
 sqlplus gakuba/Kim@localhost:1521/thu_27670_kim_permit_db
 ```
-
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Database%20Connection.png)
+ 
+ ---
+ 
 ### Step 2: Verify Current State
 ```sql
 -- Check all tables
@@ -221,6 +224,10 @@ GROUP BY status
 ORDER BY count DESC;
 ```
 
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Application%20Status%20Distribution.png)
+
+---
+
 ### 6. Review Steps by Department
 ```sql
 SELECT 
@@ -233,6 +240,10 @@ LEFT JOIN review_step r ON d.department_id = r.department_id
 GROUP BY d.department_code, d.department_name
 ORDER BY total_reviews DESC;
 ```
+
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Review%20Steps%20by%20Department.png)
+
+---
 
 ### 7. Licenses Issued
 ```sql
@@ -255,6 +266,11 @@ JOIN citizen c ON a.citizen_id = c.citizen_id
 ORDER BY l.issue_date DESC
 FETCH FIRST 10 ROWS ONLY;
 ```
+---
+
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Licenses%20Issued.png)
+
+---
 
 ### 8. Documents per Application
 ```sql
@@ -268,6 +284,8 @@ FROM (
     GROUP BY application_id
 );
 ```
+---
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Documents%20per%20Application.png)
 
 ---
 
@@ -282,6 +300,7 @@ SELECT
     sys_context('USERENV', 'DB_NAME') AS database_name
 FROM dual;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Database%20Connection.png)
 **Purpose:** Show successful connection to correct PDB
 
 ---
@@ -296,6 +315,7 @@ SELECT
 FROM user_tables
 ORDER BY table_name;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/All%20Tables%20Created.png)
 **Purpose:** Verify all 7 tables exist
 
 ---
@@ -313,6 +333,7 @@ UNION ALL SELECT 'ISSUED_LICENSE', COUNT(*) FROM issued_license
 UNION ALL SELECT 'DOCUMENT', COUNT(*) FROM document
 ORDER BY table_name;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Record%20Counts.png)
 **Purpose:** Show data volume in each table
 
 ---
@@ -336,6 +357,7 @@ WHERE table_name IN (
 GROUP BY constraint_type
 ORDER BY count DESC;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Constraints%20Summary.png)
 **Purpose:** Show all constraint types implemented
 
 ---
@@ -355,6 +377,7 @@ JOIN permit_type p ON a.permit_type_id = p.permit_type_id
 WHERE ROWNUM <= 10
 ORDER BY a.application_id;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Sample%20Data%20with%20JOIN.png)
 **Purpose:** Demonstrate multi-table relationships
 
 ---
@@ -370,6 +393,7 @@ FROM application
 GROUP BY status
 ORDER BY count DESC;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Application%20Status%20Distributionn.png)
 **Purpose:** Show realistic data distribution
 
 ---
@@ -387,6 +411,7 @@ GROUP BY d.department_code, d.department_name
 ORDER BY reviews DESC
 FETCH FIRST 10 ROWS ONLY;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Review%20Process%20Tracking.png)
 **Purpose:** Show workflow tracking across departments
 
 ---
@@ -406,6 +431,7 @@ WHERE table_name IN (
 )
 ORDER BY table_name, index_name;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Indexes%20Created.png)
 **Purpose:** Verify performance optimization
 
 ---
@@ -449,15 +475,8 @@ SELECT
 FROM user_sequences
 ORDER BY sequence_name;
 ```
+![](https://github.com/KimGakuba/Citizen-Permit-Licensing-System/blob/main/phase_5/screenshots/Check%20current%20sequence%20values.png)
 
-**Sequences:**
-1. `seq_citizen_id` - Current: 1200
-2. `seq_permit_type_id` - Current: 120
-3. `seq_department_id` - Current: 36
-4. `seq_application_id` - Current: 10530+
-5. `seq_review_step_id` - Current: varies
-6. `seq_license_id` - Current: varies
-7. `seq_document_id` - Current: varies
 
 ---
 
